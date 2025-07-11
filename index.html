@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aircraft Maintenance Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav>
+    <img src="يقين لوقو.png" class="nav-logo" alt="YAQEEN Logo" />
+    <span class="nav-title">Aircraft Maintenance</span>
+    <button class="menu-btn" onclick="toggleMenu()">&#9776;</button>
+  </nav>
+
+  <!-- SIDE MENU -->
+  <div id="sideMenu" class="side-menu">
+    <button class="close-btn" onclick="toggleMenu()">&times;</button>
+    <a href="#" onclick="selectSection('dashboard')">Dashboard</a>
+    <a href="#" onclick="selectSection('maintenance')">Maintenance</a>
+    <a href="#" onclick="selectSection('analysis')">Analysis</a>
+  </div>
+  <div id="menuOverlay" class="menu-overlay" onclick="toggleMenu()"></div>
+
+  <!-- DASHBOARD -->
+  <section id="dashboard" class="active">
+    <h1>Aircraft Dashboard</h1>
+    <div class="grid">
+      <div class="card">
+        <canvas id="flightPerformance"></canvas>
+        <p class="chart-desc" id="descPerformance">...</p>
+      </div>
+      <div class="card">
+        <canvas id="mechanicalStatus"></canvas>
+        <p class="chart-desc" id="descMechanical">...</p>
+      </div>
+      <div class="card">
+        <canvas id="fuelOilExhaust"></canvas>
+        <p class="chart-desc" id="descFuel">...</p>
+      </div>
+      <div class="card">
+        <canvas id="faultCodes"></canvas>
+        <p class="chart-desc" id="descFaults">...</p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- MAINTENANCE PAGE -->
+  <section id="maintenance">
+    <h1>Maintenance Management</h1>
+    <div class="maintenance-layout">
+      <div class="left">
+        <h2>Maintenance Table</h2>
+        <button onclick="toggleFormVisibility()" class="add-btn" id="showAddFormBtn">
+          ➕ Add Maintenance Task
+        </button>
+        <div class="card" id="formCard" style="display:none;">
+          <h3>Add Maintenance Task</h3>
+          <form id="maintenanceForm" autocomplete="off">
+            <input type="text" id="partId" placeholder="Part ID" required />
+            <input type="text" id="partName" placeholder="Part Name" required />
+            <select id="status" required>
+              <option value="" disabled selected>Status</option>
+              <option value="Excellent">Excellent</option>
+              <option value="Very Good">Very Good</option>
+              <option value="Average">Average</option>
+              <option value="Poor">Poor</option>
+            </select>
+            <input type="date" id="date" required />
+            <input type="number" id="completion" placeholder="Completion %" min="0" max="100" required />
+            <input type="text" id="team" placeholder="Team" required />
+            <button type="submit">✔️ Save</button>
+          </form>
+        </div>
+        <div class="table-wrapper">
+          <table id="maintenanceTable">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Part</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Completion</th>
+                <th>Team</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody id="partsTable"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="right">
+        <div class="card"><canvas id="maintenanceRisk"></canvas></div>
+        <div class="card"><p id="maintenanceAircraftData">📡 No Data</p></div>
+        <div class="card"><p id="maintenanceAIAnalysis">🤖 No Analysis</p></div>
+        <div class="card"><p id="maintenanceTechnicianNote">📋 No Notes</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANALYSIS PAGE -->
+  <section id="analysis">
+    <h1>Analysis</h1>
+    <div class="maintenance-section">
+      <h2>Aircraft Data</h2>
+      <div class="card">
+        <ul id="aircraftData">
+          <li>Speed: (780 knots)</li>
+          <li>Altitude: (36000 ft)</li>
+          <li>Exhaust Temp: (725°C)</li>
+          <li>Brakes: Service Needed</li>
+          <li>Hydraulic Pressure: Low Pressure</li>
+          <li>Fault Codes: ENG-HEAT, BRK-SRV</li>
+        </ul>
+      </div>
+      <button onclick="simulateAircraftData()" style="margin-top:1rem;">📥 Fetch Aircraft Data (Simulated)</button>
+      <h2>Technician Notes</h2>
+      <textarea id="reportInput" rows="6" placeholder="Enter technician notes here..."></textarea>
+      <button onclick="submitReport()" style="margin-bottom:1.5rem;">AI Analyze Notes</button>
+      <h2>AI Analysis</h2>
+      <div class="card">
+        <p id="aiOutput">...AI analysis appears here</p>
+      </div>
+      <button onclick="submitAnalysisToMaintenance()" style="margin-top: 1rem;">📤 Send Data to Maintenance</button>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
