@@ -349,4 +349,56 @@ function submitReport() {
 window.onload = function() {
   drawDashboardCharts();
   updateMaintenanceRiskChart();
+  document.getElementById('loginScreen').style.display = 'flex';
+
 };
+ function handleLogin() {
+  const id = document.getElementById('employeeId').value.trim();
+  const pass = document.getElementById('employeePassword').value.trim();
+  const errorElem = document.getElementById('loginError');
+
+  if (id === '' || pass === '') {
+    errorElem.textContent = 'Please fill all fields.';
+    return;
+  }
+
+  errorElem.textContent = '';
+
+  document.getElementById('loginScreen').style.display = 'none';
+  const scanScreen = document.getElementById('scanSimulation');
+  scanScreen.style.display = 'flex';
+
+  scanScreen.innerHTML = `<p>🔄 Please scan your ID card...</p>`;
+
+  setTimeout(() => {
+    scanScreen.innerHTML = `<p style="color: #00ff88;">✅ Card scan successful!</p>`;
+  }, 2000);
+
+  setTimeout(() => {
+    scanScreen.innerHTML = `<p>🔄 Please scan your eye...</p>`;
+
+    setTimeout(() => {
+      scanScreen.innerHTML = `<p style="color: #00ff88;">✅ Eye scan successful!</p>`;
+    }, 2000);
+
+    setTimeout(() => {
+      scanScreen.style.display = 'none';
+      showSection('dashboard');
+    }, 3000);
+
+  }, 3000);  
+}
+
+function togglePassword() {
+  const passwordInput = document.getElementById('employeePassword');
+  const btn = document.querySelector('.toggle-pass-btn');
+  if (passwordInput.type === 'password') {
+    passwordInput.type = 'text';
+    btn.textContent = '👁️‍🗨️';
+  } else {
+    passwordInput.type = 'password';
+    btn.textContent = '👁️';
+  }
+}
+
+
