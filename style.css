@@ -373,3 +373,99 @@ section.active {
 }
 ::-webkit-scrollbar { width: 8px; background: #232b36; }
 ::-webkit-scrollbar-thumb { background: #334356; border-radius: 6px; }
+
+/* Login Screen */
+.login-screen {
+  position: fixed;
+  inset: 0;
+  background: #181e26;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  flex-direction: column;
+}
+.login-box {
+  background: #222a38;
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #0009;
+  width: 320px;
+  max-width: 90%;
+}
+.login-box h2 {
+  text-align: center;
+  margin-bottom: 1.2rem;
+  font-size: 1.5rem;
+  color: #33b2ff;
+}
+.login-box input {
+  width: 100%;
+  padding: 0.9rem 0.8rem;
+  margin: 0.5rem 0;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #303c4a;
+  background: #181e26;
+  color: #f4f4f4;
+  box-sizing: border-box;
+}
+
+.login-box button {
+  width: 100%;
+  margin-top: 1rem;
+}
+.login-error {
+  color: #e74c3c;
+  font-size: 0.9rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* Scan Simulation */
+.scan-simulation {
+  position: fixed;
+  inset: 0;
+  background: #181e26;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  color: #33b2ff;
+  z-index: 9998;
+  flex-direction: column;
+  font-weight: bold;
+}
+.password-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.password-wrapper input {
+  width: 100%;
+  padding-right: 2.8rem;  
+  box-sizing: border-box;
+}
+
+.toggle-pass-btn {
+  position: absolute;
+  top: 0;
+  right: -140px;;
+  height: 45%;
+  width: 2.5rem;
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  color: #33b2ff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.toggle-pass-btn:hover {
+  color: #fff;
+}
+
+
